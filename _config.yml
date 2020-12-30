@@ -42,9 +42,9 @@ comments:
 # https://utteranc.es/
 utterances:
   repo:                "alexbozhenko/alexbozhenko.github.io"
-  issue-term:          "url"
+  issue-term:          "pathname"
   label:               "Comments"
-  theme:               "icy-dark"
+  theme:               "github-dark"
 
 
 

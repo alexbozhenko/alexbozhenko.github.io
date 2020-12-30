@@ -21,9 +21,7 @@ layout: default
     {{ content }}
   </div>
 
-  <script src="https://utteranc.es/client.js" repo={{ utterances.repo }} issue-term={{ utterances.issue-term }} label={{
-    utterances.label }} theme={{ utterances.theme }} crossorigin="anonymous" async>
-    </script>
+  {% include utterances-comment.html %}
 
   <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
 </article>
