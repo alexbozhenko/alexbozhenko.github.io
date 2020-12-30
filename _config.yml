@@ -23,8 +23,7 @@ github_username:  jekyll
 
 # Build settings
 markdown: kramdown
-#theme: jekyll-theme-hacker
-remote_theme: "mmistakes/minimal-mistakes@4.16.5"
+theme: minimal-mistakes-jekyll
 minimal_mistakes_skin: "dark"
 
 plugins:
@@ -42,7 +41,7 @@ comments:
 # https://utteranc.es/
 utterances:
   repo:                "alexbozhenko/alexbozhenko.github.io"
-  issue-term:          "pathname"
+  issue-term:          "title"
   label:               "Comments"
   theme:               "github-dark"
 
