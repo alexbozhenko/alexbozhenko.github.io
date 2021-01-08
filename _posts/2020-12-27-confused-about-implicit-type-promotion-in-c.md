@@ -1,7 +1,9 @@
 ---
-layout: post
+layout: single
 title:  "Confused about implicit type promotion in C"
 date:   2020-12-27 13:53:02 -0800
+categories:
+  - blog
 categories: C
 ---
 The following code compiles and prints the message.
