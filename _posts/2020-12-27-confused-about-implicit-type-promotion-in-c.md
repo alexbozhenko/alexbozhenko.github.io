@@ -63,7 +63,6 @@ And I would like to find out a way to not waste any time on bugs like this :)
 
 [SEI CERT C Coding Standard](https://wiki.sei.cmu.edu/confluence/display/c/INT02-C.+Understand+integer+conversion+rules) also talks about this, and has list of paid static analysis tools that can catch the behavior to some extent.
 
-UPD:
 Also, when you have wrong specifier for `printf`, it also will convert the value for you:
 
 {% highlight c %}
@@ -78,3 +77,15 @@ ulong range:    [0;-1]
 ```
 
 To get the correct values, the specifiers should be `u` and `lu` instead.
+
+UPD: there are useful gcc options to alert on this behavior:
+{% highlight c %}
+				-Wformat=2
+				-Wformat-signedness
+{% endhighlight %}
+
+And also, once you install libusan (`dnf install libubsan.x86_64`), you can enable integer overflow
+and some other undefined behavior checks with:
+{% highlight c %}
+-fsanitize=undefined
+{% endhighlight %}
