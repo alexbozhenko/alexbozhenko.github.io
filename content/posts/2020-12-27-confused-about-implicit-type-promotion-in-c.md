@@ -1,17 +1,19 @@
 ---
-layout: single
 title:  "Confused about implicit type promotion in C"
 date:   2020-12-27 13:53:02 -0800
 categories:
   - blog
 tags:
   - C
+type:
+- post
+- posts
+weight: 10
 ---
-`C` will convert types for you. Is it what you actually want?
 
 The following code compiles and prints the message.
 
-{% highlight c %}
+``` c
 #include <stdio.h>
 
 char test_char = 'a';
@@ -24,10 +26,10 @@ int main(void)
         printf("%s\n", "compared int and char with no issues");
     }
 }
-{% endhighlight %}
+```
 
 Even if we compile it with all possible warnings enabled:
-```
+``` bash
 /usr/bin/gcc -Wall -Wextra -Wconversion -Werror -Wfloat-equal -Wmissing-noreturn -Wmissing-prototypes -Wsequence-point -Wshadow -Wstrict-prototypes -Wunreachable-code -pedantic -std=c18 -ggdb3
 ```
 
@@ -42,13 +44,13 @@ which is the closest thing to behavior I would expect.
 One can run it by prepending the compilation command with `scan-build`. But still, it does not catch all instances of conversion, only 
 those were loss of precision is happening.
 
-{% highlight bash %}
+``` bash
 $ scan-build -enable-checker alpha.core.Conversion /usr/bin/gcc -Wall -Wextra -Wconversion -Werror -Wfloat-equal -Wmissing-noreturn -Wmissing-prototypes -Wsequence-point -Wshadow -Wstrict-prototypes -Wunreachable-code -pedantic -std=c18 -ggdb3 test.c -o test.exe
 scan-build: Using '/usr/bin/clang-11' for static analysis
 scan-build: Analysis run complete.
 scan-build: Removing directory '/tmp/scan-build-2020-12-28-174113-109891-1' because it contains no reports.
 scan-build: No bugs found.
-{% endhighlight %}
+```
 
 Coming from `OCaml`, it is shocking that this code works, and we need to make an effort to make it stop compiling.
 I just had a bug in my code because I wrote:
@@ -65,13 +67,13 @@ And I would like to find out a way to not waste any time on bugs like this :)
 
 Also, when you have wrong specifier for `printf`, it also will convert the value for you:
 
-{% highlight c %}
+``` C
 printf("uint range:\t[0;%d]\n", UINT_MAX);    // 2^32 = 4 bytes
 printf("ulong range:\t[0;%ld]\n", ULONG_MAX); // 2^64 = 8 bytes
-{% endhighlight %}
+```
 
 Prints:
-```
+``` C
 uint range:     [0;-1]
 ulong range:    [0;-1]
 ```
@@ -79,13 +81,13 @@ ulong range:    [0;-1]
 To get the correct values, the specifiers should be `u` and `lu` instead.
 
 UPD: there are useful gcc options to alert on this behavior:
-{% highlight c %}
+``` bash
 				-Wformat=2
 				-Wformat-signedness
-{% endhighlight %}
+```
 
 And also, once you install libusan (`dnf install libubsan.x86_64`), you can enable integer overflow
 and some other undefined behavior checks with:
-{% highlight c %}
+``` bash
 -fsanitize=undefined
-{% endhighlight %}
+```
