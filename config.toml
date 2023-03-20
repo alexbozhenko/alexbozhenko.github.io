@@ -1,5 +1,5 @@
 baseURL = "https://alexbozhenko.github.io/"
-title   = "Alex Bozhenko  "
+title   = "Alex Bozhenko blog"
 languageCode = "en-us"
 theme = "hello-friend-ng"
 
@@ -150,6 +150,16 @@ disableHugoGeneratorInject = false
   #
   # [params.commento]
   #   url = ""
+  
+  
+  [params.utterances]
+  # You must install utterances github app before use.(https://github.com/apps/utterances)
+  # Make sure all variables are set properly. Check below link for detail.
+  # https://utteranc.es/
+    repo = "alexbozhenko/alexbozhenko.github.io"
+    issueTerm = "title"
+    theme =  "github-dark"
+    label=    "Comments"
 
   # Uncomment this if you want a portrait on your start page
   #
@@ -181,7 +191,6 @@ disableHugoGeneratorInject = false
 
 [languages]
   [languages.en]
-    subtitle  = "Hello Friend NG Theme"
     weight    = 1
     copyright = '<a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>'
 
