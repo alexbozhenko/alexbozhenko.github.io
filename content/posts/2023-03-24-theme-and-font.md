@@ -13,3 +13,5 @@ type:
 I attended workshop on debugging, and instructor used the following  
 theme: https://www.nordtheme.com/  
 and font: https://github.com/tonsky/FiraCode  
+
+Both available for VSCode and iterm2
