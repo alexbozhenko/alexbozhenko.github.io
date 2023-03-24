@@ -12,6 +12,3 @@ I worked at Mirantis, Facebook, and a proprietary trading company in New York.
 
 #### Hiring me
 I’m open to full-time, short-time and part-time opportunities.
-
-#### My resume:
-    - TBD
