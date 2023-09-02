@@ -4,7 +4,7 @@ languageCode = "en-us"
 theme = "hello-friend-ng"
 
 PygmentsCodeFences = true
-PygmentsStyle = "monokai"
+PygmentsStyle = "nord"
 
 paginate  = 10
 rssLimit  = 10  # Maximum number of items in the RSS feed.
@@ -34,7 +34,7 @@ disable404     = false
 disableHugoGeneratorInject = false
 
 [permalinks]
-  posts = "/posts/:year/:month/:title/"
+  posts = "/posts/:title/"
 
 [author]
   name = "Alex Bozhenko"
@@ -88,7 +88,7 @@ disableHugoGeneratorInject = false
   # generate the buttons here: https://sharingbuttons.io
   # and add them into your own `layouts/partials/sharing-buttons.html`
   #
-  enableSharingButtons = true
+  enableSharingButtons = false
 
   # Global language menu
   #
@@ -116,9 +116,7 @@ disableHugoGeneratorInject = false
     author = true
 
     topText = []
-    bottomText = [
-      "Powered by <a href=\"http://gohugo.io\">Hugo</a>",
-    ]
+    bottomText = []
 
   # Colors for favicons
   #
@@ -130,7 +128,7 @@ disableHugoGeneratorInject = false
   [params.logo]
     logoMark     = ">"
     logoText     = "$ cd /home/"
-    logoHomeLink = "/"
+    logoHomeLink = "/posts"
     # Set true to remove the logo cursor entirely.
     logoCursorDisabled = true
     # Set to a valid CSS color to change the cursor in the logo.
@@ -158,7 +156,7 @@ disableHugoGeneratorInject = false
   # https://utteranc.es/
     repo = "alexbozhenko/alexbozhenko.github.io"
     issueTerm = "title"
-    theme =  "github-dark"
+    theme =  "dark-blue"
     label=    "Comments"
 
   # Uncomment this if you want a portrait on your start page

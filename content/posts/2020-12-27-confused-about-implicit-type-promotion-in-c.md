@@ -29,9 +29,7 @@ int main(void)
 ```
 
 Even if we compile it with all possible warnings enabled:
-``` bash
-/usr/bin/gcc -Wall -Wextra -Wconversion -Werror -Wfloat-equal -Wmissing-noreturn -Wmissing-prototypes -Wsequence-point -Wshadow -Wstrict-prototypes -Wunreachable-code -pedantic -std=c18 -ggdb3
-```
+> `/usr/bin/gcc -Wall -Wextra -Wconversion -Werror -Wfloat-equal -Wmissing-noreturn -Wmissing-prototypes -Wsequence-point -Wshadow -Wstrict-prototypes -Wunreachable-code -pedantic -std=c18 -ggdb3`
 
 However, no warning or errors are printed, even though we compare `int` to `char`.
 
