@@ -1,5 +1,5 @@
 ---
-title: Understand go toolchain directive or your money back"
+title: Understand go toolchain directive or your money back
 date: 2024-12-19
 categories:
 - blog

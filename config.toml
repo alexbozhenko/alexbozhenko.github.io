@@ -1,49 +1,66 @@
 baseURL = "https://alexbozhenko.github.io/"
-title = "Alex Bozhenko blog"
+title = "Alex Bozhenko"
 languageCode = "en-us"
 theme = "terminal"
-paginate = 10
 
+# Pagination (new format)
+[pagination]
+pagerSize = 10
+
+# Enable safe HTML in Markdown
 [markup.goldmark.renderer]
   unsafe = true
 
 [params]
+  # Basic configuration
+  contentTypeName = "posts"
+  showMenuItems = 2
+  fullWidthTheme = false
+  centerTheme = true
+  
+  # Author information
+  author = "Alex Bozhenko"
+  
+  # Theme appearance
+  themeColor = "green"
+  
+  # Features configuration
+  showLanguageSelector = false
+  enableGitInfo = true
+  autoCover = true  # Uses cover.(jpg|png|webp) from resource dir automatically
+  showLastUpdated = true  # Shows last updated date on posts
+  
+  # Reading experience
+  readingTime = true  # Show reading time estimates
+  
+  # Comments configuration
   [params.utterances]
     repo = "alexbozhenko/alexbozhenko.github.io"
     issueTerm = "title"
     theme = "github-dark"
     label = "Comments"
 
-  # Terminal theme specific
-  contentTypeName = "posts"
-  showMenuItems = 2
-  fullWidthTheme = false
-  centerTheme = true
-  
-  # Author info
-  author = "Alex Bozhenko"
-  
-  # Theme
-  #themeColor = "green"
-  
-  # Posts related
-  showLanguageSelector = false
-  enableGitInfo = true
-
+# Language specific configurations
 [languages]
   [languages.en]
     title = "Alex Bozhenko"
     subtitle = "Computer enthusiast"
-    keywords = ""
+    owner = "Alex Bozhenko"
+    keywords = "programming,software development,golang"
     copyright = '<a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>'
     menuMore = "Show more"
     readMore = "Read more"
     readOtherPosts = "Read other posts"
+    newerPosts = "Newer posts"
+    olderPosts = "Older posts"
+    missingContentMessage = "Page not found..."
+    missingBackButtonLabel = "Back to home page"
 
     [languages.en.params.logo]
       logoText = "cd ~/alex"
       logoHomeLink = "/"
 
+    # Main menu
     [languages.en.menu]
       [[languages.en.menu.main]]
         identifier = "about"
