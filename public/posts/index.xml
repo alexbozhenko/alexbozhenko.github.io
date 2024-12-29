@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Alex Bozhenko blog</title>
+    <link>https://alexbozhenko.github.io/posts/</link>
+    <description>Recent content in Posts on Alex Bozhenko blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Thu, 19 Dec 2024 19:43:02 -0700</lastBuildDate><atom:link href="https://alexbozhenko.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Confused about implicit type promotion in C</title>
+      <link>https://alexbozhenko.github.io/posts/confused-about-implicit-type-promotion-in-c/</link>
+      <pubDate>Sun, 27 Dec 2020 13:53:02 -0800</pubDate>
+      
+      <guid>https://alexbozhenko.github.io/posts/confused-about-implicit-type-promotion-in-c/</guid>
+      <description>&lt;p&gt;The following code compiles and prints the message.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#5e81ac;font-style:italic&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#5e81ac;font-style:italic&#34;&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#5e81ac;font-style:italic&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#5e81ac;font-style:italic&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#81a1c1&#34;&gt;char&lt;/span&gt; test_char &lt;span style=&#34;color:#81a1c1&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a3be8c&#34;&gt;&amp;#39;a&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#eceff4&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#81a1c1&#34;&gt;int&lt;/span&gt; test_int &lt;span style=&#34;color:#81a1c1&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#b48ead&#34;&gt;97&lt;/span&gt;&lt;span style=&#34;color:#eceff4&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#81a1c1&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#88c0d0&#34;&gt;main&lt;/span&gt;&lt;span style=&#34;color:#eceff4&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#81a1c1&#34;&gt;void&lt;/span&gt;&lt;span style=&#34;color:#eceff4&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#eceff4&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#81a1c1;font-weight:bold&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#eceff4&#34;&gt;(&lt;/span&gt;test_char &lt;span style=&#34;color:#81a1c1&#34;&gt;==&lt;/span&gt; test_int&lt;span style=&#34;color:#eceff4&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#eceff4&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#88c0d0&#34;&gt;printf&lt;/span&gt;&lt;span style=&#34;color:#eceff4&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#a3be8c&#34;&gt;&amp;#34;%s&lt;/span&gt;&lt;span style=&#34;color:#ebcb8b&#34;&gt;\n&lt;/span&gt;&lt;span style=&#34;color:#a3be8c&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#eceff4&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color:#a3be8c&#34;&gt;&amp;#34;compared int and char with no issues&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#eceff4&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#eceff4&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#eceff4&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Even if we compile it with all possible warnings enabled:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;/usr/bin/gcc -Wall -Wextra -Wconversion -Werror -Wfloat-equal -Wmissing-noreturn -Wmissing-prototypes -Wsequence-point -Wshadow -Wstrict-prototypes -Wunreachable-code -pedantic -std=c18 -ggdb3&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;However, no warning or errors are printed, even though we compare &lt;code&gt;int&lt;/code&gt; to &lt;code&gt;char&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Googling shows that this is called &lt;a href=&#34;https://stackoverflow.com/questions/46073295/implicit-type-promotion-rules&#34;&gt;&amp;ldquo;Implicit type promotion&amp;rdquo;&lt;/a&gt;
+and looks like compiler can not be configured to catch this behavior, since it is actually a language feature.&lt;/p&gt;</description>
+      <content>&lt;p&gt;The following code compiles and prints the message.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#5e81ac;font-style:italic&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#5e81ac;font-style:italic&#34;&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#5e81ac;font-style:italic&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#5e81ac;font-style:italic&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#81a1c1&#34;&gt;char&lt;/span&gt; test_char &lt;span style=&#34;color:#81a1c1&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a3be8c&#34;&gt;&amp;#39;a&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#eceff4&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#81a1c1&#34;&gt;int&lt;/span&gt; test_int &lt;span style=&#34;color:#81a1c1&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#b48ead&#34;&gt;97&lt;/span&gt;&lt;span style=&#34;color:#eceff4&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#81a1c1&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#88c0d0&#34;&gt;main&lt;/span&gt;&lt;span style=&#34;color:#eceff4&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#81a1c1&#34;&gt;void&lt;/span&gt;&lt;span style=&#34;color:#eceff4&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#eceff4&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#81a1c1;font-weight:bold&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#eceff4&#34;&gt;(&lt;/span&gt;test_char &lt;span style=&#34;color:#81a1c1&#34;&gt;==&lt;/span&gt; test_int&lt;span style=&#34;color:#eceff4&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#eceff4&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#88c0d0&#34;&gt;printf&lt;/span&gt;&lt;span style=&#34;color:#eceff4&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#a3be8c&#34;&gt;&amp;#34;%s&lt;/span&gt;&lt;span style=&#34;color:#ebcb8b&#34;&gt;\n&lt;/span&gt;&lt;span style=&#34;color:#a3be8c&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#eceff4&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color:#a3be8c&#34;&gt;&amp;#34;compared int and char with no issues&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#eceff4&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#eceff4&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#eceff4&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Even if we compile it with all possible warnings enabled:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;/usr/bin/gcc -Wall -Wextra -Wconversion -Werror -Wfloat-equal -Wmissing-noreturn -Wmissing-prototypes -Wsequence-point -Wshadow -Wstrict-prototypes -Wunreachable-code -pedantic -std=c18 -ggdb3&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;However, no warning or errors are printed, even though we compare &lt;code&gt;int&lt;/code&gt; to &lt;code&gt;char&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Googling shows that this is called &lt;a href=&#34;https://stackoverflow.com/questions/46073295/implicit-type-promotion-rules&#34;&gt;&amp;ldquo;Implicit type promotion&amp;rdquo;&lt;/a&gt;
+and looks like compiler can not be configured to catch this behavior, since it is actually a language feature.&lt;/p&gt;
+&lt;p&gt;Some static analysis tools can potentially detect this. &lt;code&gt;Clang&lt;/code&gt; static analyzer has a check called
+&lt;a href=&#34;https://clang.llvm.org/docs/analyzer/checkers.html#alpha-core-conversion-c-c-objc&#34;&gt;Loss of sign/precision in implicit conversions&lt;/a&gt;,
+which is the closest thing to behavior I would expect.
+One can run it by prepending the compilation command with &lt;code&gt;scan-build&lt;/code&gt;. But still, it does not catch all instances of conversion, only
+those were loss of precision is happening.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ scan-build -enable-checker alpha.core.Conversion /usr/bin/gcc -Wall -Wextra -Wconversion -Werror -Wfloat-equal -Wmissing-noreturn -Wmissing-prototypes -Wsequence-point -Wshadow -Wstrict-prototypes -Wunreachable-code -pedantic -std&lt;span style=&#34;color:#81a1c1&#34;&gt;=&lt;/span&gt;c18 -ggdb3 test.c -o test.exe
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;scan-build: Using &lt;span style=&#34;color:#a3be8c&#34;&gt;&amp;#39;/usr/bin/clang-11&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#81a1c1;font-weight:bold&#34;&gt;for&lt;/span&gt; static analysis
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;scan-build: Analysis run complete.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;scan-build: Removing directory &lt;span style=&#34;color:#a3be8c&#34;&gt;&amp;#39;/tmp/scan-build-2020-12-28-174113-109891-1&amp;#39;&lt;/span&gt; because it contains no reports.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;scan-build: No bugs found.
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Coming from &lt;code&gt;OCaml&lt;/code&gt;, it is shocking that this code works, and we need to make an effort to make it stop compiling.
+I just had a bug in my code because I wrote:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;if (i == &#39;\n&#39;)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;instead of&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;if (line[i] == &#39;\n&#39;)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;And I would like to find out a way to not waste any time on bugs like this :)&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://wiki.sei.cmu.edu/confluence/display/c/INT02-C.&amp;#43;Understand&amp;#43;integer&amp;#43;conversion&amp;#43;rules&#34;&gt;SEI CERT C Coding Standard&lt;/a&gt; also talks about this, and has list of paid static analysis tools that can catch the behavior to some extent.&lt;/p&gt;
+&lt;p&gt;Also, when you have wrong specifier for &lt;code&gt;printf&lt;/code&gt;, it also will convert the value for you:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#88c0d0&#34;&gt;printf&lt;/span&gt;&lt;span style=&#34;color:#eceff4&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#a3be8c&#34;&gt;&amp;#34;uint range:&lt;/span&gt;&lt;span style=&#34;color:#ebcb8b&#34;&gt;\t&lt;/span&gt;&lt;span style=&#34;color:#a3be8c&#34;&gt;[0;%d]&lt;/span&gt;&lt;span style=&#34;color:#ebcb8b&#34;&gt;\n&lt;/span&gt;&lt;span style=&#34;color:#a3be8c&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#eceff4&#34;&gt;,&lt;/span&gt; UINT_MAX&lt;span style=&#34;color:#eceff4&#34;&gt;);&lt;/span&gt;    &lt;span style=&#34;color:#616e87;font-style:italic&#34;&gt;// 2^32 = 4 bytes
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#616e87;font-style:italic&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#88c0d0&#34;&gt;printf&lt;/span&gt;&lt;span style=&#34;color:#eceff4&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#a3be8c&#34;&gt;&amp;#34;ulong range:&lt;/span&gt;&lt;span style=&#34;color:#ebcb8b&#34;&gt;\t&lt;/span&gt;&lt;span style=&#34;color:#a3be8c&#34;&gt;[0;%ld]&lt;/span&gt;&lt;span style=&#34;color:#ebcb8b&#34;&gt;\n&lt;/span&gt;&lt;span style=&#34;color:#a3be8c&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#eceff4&#34;&gt;,&lt;/span&gt; ULONG_MAX&lt;span style=&#34;color:#eceff4&#34;&gt;);&lt;/span&gt; &lt;span style=&#34;color:#616e87;font-style:italic&#34;&gt;// 2^64 = 8 bytes
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Prints:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;uint &lt;span style=&#34;color:#8fbcbb&#34;&gt;range&lt;/span&gt;&lt;span style=&#34;color:#eceff4&#34;&gt;:&lt;/span&gt;     &lt;span style=&#34;color:#eceff4&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color:#b48ead&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color:#eceff4&#34;&gt;;&lt;/span&gt;&lt;span style=&#34;color:#81a1c1&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#b48ead&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color:#eceff4&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ulong &lt;span style=&#34;color:#8fbcbb&#34;&gt;range&lt;/span&gt;&lt;span style=&#34;color:#eceff4&#34;&gt;:&lt;/span&gt;    &lt;span style=&#34;color:#eceff4&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color:#b48ead&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color:#eceff4&#34;&gt;;&lt;/span&gt;&lt;span style=&#34;color:#81a1c1&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#b48ead&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color:#eceff4&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;To get the correct values, the specifiers should be &lt;code&gt;u&lt;/code&gt; and &lt;code&gt;lu&lt;/code&gt; instead.&lt;/p&gt;
+&lt;p&gt;UPD: there are useful gcc options to alert on this behavior:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;				-Wformat&lt;span style=&#34;color:#81a1c1&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#b48ead&#34;&gt;2&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;				-Wformat-signedness
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;And also, once you install libusan (&lt;code&gt;dnf install libubsan.x86_64&lt;/code&gt;), you can enable integer overflow
+and some other undefined behavior checks with:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;-fsanitize&lt;span style=&#34;color:#81a1c1&#34;&gt;=&lt;/span&gt;undefined
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content>
+    </item>
+    
+    <item>
+      <title>Understand go toolchain directive or your money back&#34;</title>
+      <link>https://alexbozhenko.github.io/posts/understand-go-toolchain-directive-or-your-money-back/</link>
+      <pubDate>Thu, 19 Dec 2024 19:43:02 -0700</pubDate>
+      
+      <guid>https://alexbozhenko.github.io/posts/understand-go-toolchain-directive-or-your-money-back/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://github.com/cli/cli/issues/9489&#34;&gt;https://github.com/cli/cli/issues/9489&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/docker-library/golang/issues/472#issuecomment-1721760993&#34;&gt;https://github.com/docker-library/golang/issues/472#issuecomment-1721760993&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://go.dev/doc/toolchain&#34;&gt;https://go.dev/doc/toolchain&lt;/a&gt;
+&lt;a href=&#34;https://go.dev/blog/toolchain&#34;&gt;https://go.dev/blog/toolchain&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://go.dev/ref/mod&#34;&gt;https://go.dev/ref/mod&lt;/a&gt;
+&lt;a href=&#34;https://go.dev/doc/modules/gomod-ref&#34;&gt;https://go.dev/doc/modules/gomod-ref&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://go.dev/doc/godebug&#34;&gt;https://go.dev/doc/godebug&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://go.dev/doc/go1.21#tools&#34;&gt;https://go.dev/doc/go1.21#tools&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;With this compatibility support, the latest Go toolchain should always be the best, most secure, implementation of an older version of Go. See “Go, Backwards Compatibility, and GODEBUG” for details.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=v24wrd3RwGo&#34;&gt;https://www.youtube.com/watch?v=v24wrd3RwGo&lt;/a&gt;
+&lt;a href=&#34;https://go.googlesource.com/proposal/&amp;#43;/master/design/56986-godebug.md&#34;&gt;https://go.googlesource.com/proposal/+/master/design/56986-godebug.md&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;127k files:
+&lt;a href=&#34;https://github.com/search?q=%28%2Fgo&amp;#43;1.2%5B123%5D%24%2F%29&amp;#43;path%3A**%2Fgo.mod&amp;#43;&amp;#43;NOT&amp;#43;is%3Aarchived&amp;amp;type=code&amp;amp;ref=advsearch&#34;&gt;https://github.com/search?q=%28%2Fgo+1.2%5B123%5D%24%2F%29+path%3A**%2Fgo.mod++NOT+is%3Aarchived&amp;type=code&amp;ref=advsearch&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;285k files:
+&lt;a href=&#34;https://github.com/search?q=%28%2Fgo&amp;#43;1%5C.2%5B1-9%5D%5C.%5B0-9%5D%2B%24%2F%29&amp;#43;path%3A**%2Fgo.mod&amp;#43;&amp;#43;NOT&amp;#43;is%3Aarchived&amp;amp;type=code&amp;amp;ref=advsearch&#34;&gt;https://github.com/search?q=%28%2Fgo+1%5C.2%5B1-9%5D%5C.%5B0-9%5D%2B%24%2F%29+path%3A**%2Fgo.mod++NOT+is%3Aarchived&amp;type=code&amp;ref=advsearch&lt;/a&gt;&lt;/p&gt;</description>
+      <content>&lt;p&gt;&lt;a href=&#34;https://github.com/cli/cli/issues/9489&#34;&gt;https://github.com/cli/cli/issues/9489&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/docker-library/golang/issues/472#issuecomment-1721760993&#34;&gt;https://github.com/docker-library/golang/issues/472#issuecomment-1721760993&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://go.dev/doc/toolchain&#34;&gt;https://go.dev/doc/toolchain&lt;/a&gt;
+&lt;a href=&#34;https://go.dev/blog/toolchain&#34;&gt;https://go.dev/blog/toolchain&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://go.dev/ref/mod&#34;&gt;https://go.dev/ref/mod&lt;/a&gt;
+&lt;a href=&#34;https://go.dev/doc/modules/gomod-ref&#34;&gt;https://go.dev/doc/modules/gomod-ref&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://go.dev/doc/godebug&#34;&gt;https://go.dev/doc/godebug&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://go.dev/doc/go1.21#tools&#34;&gt;https://go.dev/doc/go1.21#tools&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;With this compatibility support, the latest Go toolchain should always be the best, most secure, implementation of an older version of Go. See “Go, Backwards Compatibility, and GODEBUG” for details.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=v24wrd3RwGo&#34;&gt;https://www.youtube.com/watch?v=v24wrd3RwGo&lt;/a&gt;
+&lt;a href=&#34;https://go.googlesource.com/proposal/&amp;#43;/master/design/56986-godebug.md&#34;&gt;https://go.googlesource.com/proposal/+/master/design/56986-godebug.md&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;127k files:
+&lt;a href=&#34;https://github.com/search?q=%28%2Fgo&amp;#43;1.2%5B123%5D%24%2F%29&amp;#43;path%3A**%2Fgo.mod&amp;#43;&amp;#43;NOT&amp;#43;is%3Aarchived&amp;amp;type=code&amp;amp;ref=advsearch&#34;&gt;https://github.com/search?q=%28%2Fgo+1.2%5B123%5D%24%2F%29+path%3A**%2Fgo.mod++NOT+is%3Aarchived&amp;type=code&amp;ref=advsearch&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;285k files:
+&lt;a href=&#34;https://github.com/search?q=%28%2Fgo&amp;#43;1%5C.2%5B1-9%5D%5C.%5B0-9%5D%2B%24%2F%29&amp;#43;path%3A**%2Fgo.mod&amp;#43;&amp;#43;NOT&amp;#43;is%3Aarchived&amp;amp;type=code&amp;amp;ref=advsearch&#34;&gt;https://github.com/search?q=%28%2Fgo+1%5C.2%5B1-9%5D%5C.%5B0-9%5D%2B%24%2F%29+path%3A**%2Fgo.mod++NOT+is%3Aarchived&amp;type=code&amp;ref=advsearch&lt;/a&gt;&lt;/p&gt;
+</content>
+    </item>
+    
+    <item>
+      <title>Hide youtube controls in full screen mode</title>
+      <link>https://alexbozhenko.github.io/posts/hide-youtube-controls-in-full-screen-mode/</link>
+      <pubDate>Sun, 30 Jun 2024 16:43:02 -0700</pubDate>
+      
+      <guid>https://alexbozhenko.github.io/posts/hide-youtube-controls-in-full-screen-mode/</guid>
+      <description>&lt;p&gt;I was watching &lt;a href=&#34;https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab&#34;&gt;https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab&lt;/a&gt;
+and was annoyed by the presence of youtube controls and video title in full screen mode,
+when you stop the video.&lt;/p&gt;
+&lt;p&gt;Turns out, there is a plugin to disable them:
+&lt;a href=&#34;https://addons.mozilla.org/en-US/firefox/addon/hide-youtube-controls/&#34;&gt;https://addons.mozilla.org/en-US/firefox/addon/hide-youtube-controls/&lt;/a&gt;&lt;/p&gt;</description>
+      <content>&lt;p&gt;I was watching &lt;a href=&#34;https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab&#34;&gt;https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab&lt;/a&gt;
+and was annoyed by the presence of youtube controls and video title in full screen mode,
+when you stop the video.&lt;/p&gt;
+&lt;p&gt;Turns out, there is a plugin to disable them:
+&lt;a href=&#34;https://addons.mozilla.org/en-US/firefox/addon/hide-youtube-controls/&#34;&gt;https://addons.mozilla.org/en-US/firefox/addon/hide-youtube-controls/&lt;/a&gt;&lt;/p&gt;
+</content>
+    </item>
+    
+    <item>
+      <title>Learning go in 2024</title>
+      <link>https://alexbozhenko.github.io/posts/learning-go-in-2024/</link>
+      <pubDate>Thu, 25 Jan 2024 16:43:02 -0700</pubDate>
+      
+      <guid>https://alexbozhenko.github.io/posts/learning-go-in-2024/</guid>
+      <description>&lt;ol start=&#34;0&#34;&gt;
+&lt;li&gt;Read &lt;a href=&#34;https://cacm.acm.org/magazines/2022/5/260357-the-go-programming-language-and-environment/fulltext&#34;&gt;https://cacm.acm.org/magazines/2022/5/260357-the-go-programming-language-and-environment/fulltext&lt;/a&gt; to understand the philosophy&lt;/li&gt;
+&lt;li&gt;Go through &lt;a href=&#34;https://go.dev/tour/list&#34;&gt;https://go.dev/tour/list&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Go through &lt;a href=&#34;https://tour.ardanlabs.com/tour/eng/list&#34;&gt;https://tour.ardanlabs.com/tour/eng/list&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Start solving &lt;a href=&#34;https://exercism.org/tracks/go&#34;&gt;https://exercism.org/tracks/go&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Start reading  &lt;a href=&#34;https://www.oreilly.com/library/view/learning-go-2nd/9781098139285/&#34;&gt;https://www.oreilly.com/library/view/learning-go-2nd/9781098139285/&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Reputable sources to use as reference:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://go.dev/ref/spec&#34;&gt;https://go.dev/ref/spec&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://gobyexample.com/&#34;&gt;https://gobyexample.com/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+      <content>&lt;ol start=&#34;0&#34;&gt;
+&lt;li&gt;Read &lt;a href=&#34;https://cacm.acm.org/magazines/2022/5/260357-the-go-programming-language-and-environment/fulltext&#34;&gt;https://cacm.acm.org/magazines/2022/5/260357-the-go-programming-language-and-environment/fulltext&lt;/a&gt; to understand the philosophy&lt;/li&gt;
+&lt;li&gt;Go through &lt;a href=&#34;https://go.dev/tour/list&#34;&gt;https://go.dev/tour/list&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Go through &lt;a href=&#34;https://tour.ardanlabs.com/tour/eng/list&#34;&gt;https://tour.ardanlabs.com/tour/eng/list&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Start solving &lt;a href=&#34;https://exercism.org/tracks/go&#34;&gt;https://exercism.org/tracks/go&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Start reading  &lt;a href=&#34;https://www.oreilly.com/library/view/learning-go-2nd/9781098139285/&#34;&gt;https://www.oreilly.com/library/view/learning-go-2nd/9781098139285/&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Reputable sources to use as reference:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://go.dev/ref/spec&#34;&gt;https://go.dev/ref/spec&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://gobyexample.com/&#34;&gt;https://gobyexample.com/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    </item>
+    
+    <item>
+      <title>Notes on go error hanling</title>
+      <link>https://alexbozhenko.github.io/posts/notes-on-go-error-hanling/</link>
+      <pubDate>Fri, 01 Sep 2023 06:48:02 -0700</pubDate>
+      
+      <guid>https://alexbozhenko.github.io/posts/notes-on-go-error-hanling/</guid>
+      <description>&lt;p&gt;TL;DR&lt;/p&gt;
+&lt;p&gt;Read &lt;a href=&#34;https://learning.oreilly.com/library/view/the-go-programming/9780134190570/ebook_split_045.html&#34;&gt;Chapter 5.4&lt;/a&gt; in &lt;code&gt;The Go Programming Language by Alan A. A. Donovan and Brian W. Kernighan&lt;/code&gt;.
+In just two pages, the original designers of the language explain the essence of Go error handling.&lt;/p&gt;
+&lt;p&gt;The book was published in 2015, before the Go standard library added additional convenience functions in 2019. So, also read this blog post:
+&lt;a href=&#34;https://go.dev/blog/go1.13-errors&#34;&gt;Working with Errors in Go 1.13&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For some examples, check out:
+&lt;a href=&#34;https://tour.ardanlabs.com/tour/error-handling/1&#34;&gt;https://tour.ardanlabs.com/tour/error-handling/1&lt;/a&gt;&lt;br&gt;
+You can also skim through the &amp;ldquo;Extra reading&amp;rdquo; section, but keep in mind the age of those posts.&lt;/p&gt;</description>
+      <content>&lt;p&gt;TL;DR&lt;/p&gt;
+&lt;p&gt;Read &lt;a href=&#34;https://learning.oreilly.com/library/view/the-go-programming/9780134190570/ebook_split_045.html&#34;&gt;Chapter 5.4&lt;/a&gt; in &lt;code&gt;The Go Programming Language by Alan A. A. Donovan and Brian W. Kernighan&lt;/code&gt;.
+In just two pages, the original designers of the language explain the essence of Go error handling.&lt;/p&gt;
+&lt;p&gt;The book was published in 2015, before the Go standard library added additional convenience functions in 2019. So, also read this blog post:
+&lt;a href=&#34;https://go.dev/blog/go1.13-errors&#34;&gt;Working with Errors in Go 1.13&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For some examples, check out:
+&lt;a href=&#34;https://tour.ardanlabs.com/tour/error-handling/1&#34;&gt;https://tour.ardanlabs.com/tour/error-handling/1&lt;/a&gt;&lt;br&gt;
+You can also skim through the &amp;ldquo;Extra reading&amp;rdquo; section, but keep in mind the age of those posts.&lt;/p&gt;
+</content>
+    </item>
+    
+    <item>
+      <title>Pragmatic programmer book</title>
+      <link>https://alexbozhenko.github.io/posts/pragmatic-programmer-book/</link>
+      <pubDate>Sat, 25 Mar 2023 06:48:02 -0700</pubDate>
+      
+      <guid>https://alexbozhenko.github.io/posts/pragmatic-programmer-book/</guid>
+      <description>&lt;p&gt;Fantastic book:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://pragprog.com/titles/tpp20/the-pragmatic-programmer-20th-anniversary-edition/&#34;&gt;The Pragmatic Programmer, 20th Anniversary Edition&lt;/a&gt;&lt;/p&gt;</description>
+      <content>&lt;p&gt;Fantastic book:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://pragprog.com/titles/tpp20/the-pragmatic-programmer-20th-anniversary-edition/&#34;&gt;The Pragmatic Programmer, 20th Anniversary Edition&lt;/a&gt;&lt;/p&gt;
+</content>
+    </item>
+    
+    <item>
+      <title>Theme and font</title>
+      <link>https://alexbozhenko.github.io/posts/theme-and-font/</link>
+      <pubDate>Fri, 24 Mar 2023 06:48:02 -0700</pubDate>
+      
+      <guid>https://alexbozhenko.github.io/posts/theme-and-font/</guid>
+      <description>&lt;p&gt;I attended workshop on debugging, and instructor used the following&lt;br&gt;
+theme: &lt;a href=&#34;https://www.nordtheme.com/&#34;&gt;https://www.nordtheme.com/&lt;/a&gt;&lt;br&gt;
+and font: &lt;a href=&#34;https://github.com/tonsky/FiraCode&#34;&gt;https://github.com/tonsky/FiraCode&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Both available for VSCode and iterm2&lt;/p&gt;</description>
+      <content>&lt;p&gt;I attended workshop on debugging, and instructor used the following&lt;br&gt;
+theme: &lt;a href=&#34;https://www.nordtheme.com/&#34;&gt;https://www.nordtheme.com/&lt;/a&gt;&lt;br&gt;
+and font: &lt;a href=&#34;https://github.com/tonsky/FiraCode&#34;&gt;https://github.com/tonsky/FiraCode&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Both available for VSCode and iterm2&lt;/p&gt;
+</content>
+    </item>
+    
+  </channel>
+</rss>

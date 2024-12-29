@@ -1,7 +1,7 @@
 baseURL = "https://alexbozhenko.github.io/"
 title   = "Alex Bozhenko blog"
 languageCode = "en-us"
-theme = "hello-friend-ng"
+theme = "terminal"
 
 PygmentsCodeFences = true
 PygmentsStyle = "nord"
