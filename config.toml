@@ -41,10 +41,14 @@ pagerSize = 10
     theme = "github-dark"
     label = "Comments"
 
+
 # Language specific configurations
 [languages]
   [languages.en]
+    languageName= "English"
     title = "Alex Bozhenko"
+
+    [languages.en.params]
     subtitle = "Computer enthusiast"
     owner = "Alex Bozhenko"
     keywords = "programming,software development,golang"
