@@ -13,6 +13,7 @@ paginate = 10
     issueTerm = "title"
     theme = "github-dark"
     label = "Comments"
+
   # Terminal theme specific
   contentTypeName = "posts"
   showMenuItems = 2
