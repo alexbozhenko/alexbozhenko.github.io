@@ -8,6 +8,11 @@ paginate = 10
   unsafe = true
 
 [params]
+  [params.utterances]
+    repo = "alexbozhenko/alexbozhenko.github.io"
+    issueTerm = "title"
+    theme = "github-dark"
+    label = "Comments"
   # Terminal theme specific
   contentTypeName = "posts"
   showMenuItems = 2
