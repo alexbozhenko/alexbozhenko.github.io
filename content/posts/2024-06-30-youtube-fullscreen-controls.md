@@ -1,6 +1,6 @@
 ---
-title:  "Hide youtube controls in full screen mode"
-date:   2024-06-30 16:43:02 -0700
+title: "Hide youtube controls in full screen mode"
+date: 2024-06-30
 categories:
   - blog
 type:

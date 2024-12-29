@@ -1,6 +1,6 @@
 ---
-title:  "Pragmatic programmer book"
-date:   2023-03-25 06:48:02 -0700
+title: "Pragmatic programmer book"
+date: 2023-03-25
 categories:
   - blog
 type:

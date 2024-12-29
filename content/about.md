@@ -1,6 +1,6 @@
 ---
 title:  "About"
-date:   2023-03-19 06:48:02 -0700
+date:   2023-03-19
 aliases: 
   - "contact"
 ---
@@ -16,4 +16,5 @@ In 2021, I took a year off to enroll in the phenomenal [Bradfield Computer Scien
 I am currently working at Pinterest.
 
 #### Hiring me
+
 I’m open to full-time, short-time and part-time opportunities.

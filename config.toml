@@ -18,11 +18,11 @@ paginate = 10
   author = "Alex Bozhenko"
   
   # Theme
-  themeColor = "green"
+  #themeColor = "green"
   
   # Posts related
   showLanguageSelector = false
-  enableGitInfo = false
+  enableGitInfo = true
 
 [languages]
   [languages.en]

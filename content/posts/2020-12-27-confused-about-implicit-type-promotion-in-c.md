@@ -1,6 +1,6 @@
 ---
-title:  "Confused about implicit type promotion in C"
-date:   2020-12-27 13:53:02 -0800
+title: "Confused about implicit type promotion in C"
+date: 2020-12-27
 categories:
   - blog
 tags:
@@ -8,7 +8,6 @@ tags:
 type:
 - post
 - posts
-weight: 10
 ---
 
 The following code compiles and prints the message.

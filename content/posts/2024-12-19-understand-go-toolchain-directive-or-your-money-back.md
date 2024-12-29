@@ -1,14 +1,11 @@
-
 ---
-title:  Understand go toolchain directive or your money back"
-date:   2024-12-19 19:43:02 -0700
+title: Understand go toolchain directive or your money back"
+date: 2024-12-19
 categories:
-
 - blog
 type:
 - post
 - posts
-
 ---
 
 <https://github.com/cli/cli/issues/9489>
