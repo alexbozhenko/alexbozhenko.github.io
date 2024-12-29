@@ -1,6 +1,7 @@
 ---
 title:  "About"
 date:   2023-03-19
+noComment: true
 aliases: 
   - "contact"
 ---
