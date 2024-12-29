@@ -6,12 +6,14 @@ theme = "hello-friend-ng"
 PygmentsCodeFences = true
 PygmentsStyle = "nord"
 
-paginate  = 10
+[pagination]
+pagerSize = 10
+
 rssLimit  = 10  # Maximum number of items in the RSS feed.
 copyright = "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License." # This message is only used by the RSS template.
 
 # googleAnalytics = ""
-# disqusShortname = ""
+disqusShortname = ""
 
 archetypeDir = "archetypes"
 contentDir   = "content"
@@ -36,18 +38,19 @@ disableHugoGeneratorInject = false
 [permalinks]
   posts = "/posts/:title/"
 
-[author]
-  name = "Alex Bozhenko"
-
 [blackfriday]
   hrefTargetBlank = true
 
 [taxonomies]
-  tag      = "tags"
-  category = "categories"
-  series   = "series"
+tag      = "tags"
+category = "categories"
+series   = "series"
+author   = "authors"
 
 [params]
+[params.author]
+    name = "Alex Bozhenko"
+
   dateform        = "Jan 2, 2006"
   dateformShort   = "Jan 2"
   dateformNum     = "2006-01-02"
