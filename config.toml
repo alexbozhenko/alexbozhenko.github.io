@@ -17,12 +17,13 @@ pagerSize = 10
   showMenuItems = 2
   fullWidthTheme = false
   centerTheme = true
+  #Toc = true
   
   # Author information
   author = "Alex Bozhenko"
   
   # Theme appearance
-  themeColor = "green"
+  themeColor = "blue"
   
   # Features configuration
   showLanguageSelector = false
