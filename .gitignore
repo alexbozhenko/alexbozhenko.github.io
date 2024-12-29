@@ -3,12 +3,9 @@
 
 # Hugo generated resources directory
 /resources/_gen/
-/assets/jsconfig.json
-
-# Temporary lock files
 .hugo_build.lock
 
-# OS generated files
+# Temporary files
 .DS_Store
 .DS_Store?
 ._*
@@ -16,3 +13,9 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# IDE specific files
+.idea
+.vscode
+*.swp
+*.swo
