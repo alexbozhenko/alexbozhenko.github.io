@@ -55,7 +55,11 @@ So here is a concise overview with examples:
     [127k files](https://github.com/search?q=%28%2Fgo+1.2%5B1-9%5D%24%2F%29+path%3A**%2Fgo.mod++NOT+is%3Aarchived&type=code&ref=advsearch) do not speicfy the patch release,  
     and [305k files](https://github.com/search?q=%28%2Fgo+1%5C.2%5B1-9%5D%5C.%5B0-9%5D%2B%24%2F%29+path%3A**%2Fgo.mod++NOT+is%3Aarchived&type=code&ref=advsearch) do.
 
-2. `Toolchain` directive in `go.mod`` specifies **the minimum** Go toolchain to use when working in a particular module.
+2. ```go.mod
+    toolchain minimum-toolchain-to-use
+    ```
+
+    `Toolchain` directive in `go.mod`` specifies **the minimum** Go toolchain to use when working in a particular module.
 
     Go toolchains are named goV where V is a Go version denoting a release or release candidate.
     E.g. `go1.23.0` or `go1.24rc1`. <https://go.dev/doc/toolchain#name>.
@@ -82,6 +86,12 @@ So here is a concise overview with examples:
       * `go` command uses its own bundled toolchain when that toolchain is **at least as new as the go or toolchain lines in the main module** or workspace.
       * When the go or toolchain line is newer than the bundled toolchain, the go command **downloads and uses the specified toolchain** instead.  
       These toolchains are packaged as special modules with module path golang.org/toolchain and version v0.0.1-goVERSION.GOOS-GOARCH. Toolchains are downloaded like any other module.
+      So that means, e.g., if your go.mod specifies `toolchain 1.23.5`, but you have go `1.24.0` installed, your binary will be built using `1.24` toolchain.
+
+      I feel like this default behaviour violates [Principle of least astonishment](https://en.wikipedia.org/wiki/Principle_of_least_astonishment) and makes it harder to achieve [hermetic](https://abseil.io/resources/swe-book/html/ch18.html#:~:text=Tools%20as%20dependencies,to%20each%20target)
+      [builds](https://bazel.build/basics/hermeticity#:~:text=Isolation%3A%20Hermetic%20build%20systems%20treat%20tools%20as%20source%20code.%20They%20download%20copies%20of%20tools%20and%20manage%20their%20storage%20and%20use%20inside%20managed%20file%20trees.%20This%20creates%20isolation%20between%20the%20host%20machine%20and%20local%20user%2C%20including%20installed%20versions%20of%20languages).  
+      But, luckly, there are other settings to choose from:
+
     * `GOTOOLCHAIN=local` - automatic downloads disabled. Local go toolchain is used, if it is >= `go` or `toolchain` directive in go.mod. Otherwise, the module fails to build.
     * `GOTOOLCHAIN=toolchain_version` (e.g. `GOTOOLCHAIN=go1.23.0`) - the go command always runs that specified Go toolchain.
     If a binary with that name is found in the system PATH, the go command uses it. Otherwise the go command uses a Go toolchain it downloads and verifies.
